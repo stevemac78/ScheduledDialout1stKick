@@ -8,6 +8,7 @@ $url = "https://pop2-apps.mycontactcenter.net/API/v3/dialer/entry" . $_SERVER['Q
 // Perform the API request
 $response = file_get_contents($url);
 
-// Return the API response to the client
+// Forward the API response as JSON
+header('Content-Type: application/json');
 echo $response;
 ?>
