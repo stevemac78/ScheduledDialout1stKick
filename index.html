@@ -115,7 +115,8 @@
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'token': token
+				'token': token,
+				'Access-Control-Allow-Origin': "*",
 			},
 			body: JSON.stringify([data])
 		})
