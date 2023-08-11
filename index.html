@@ -42,23 +42,24 @@
                 "DefaultSubsubject": defaultSubsubject
             };
 
-            // Construct the JSONP URL
-            var url = "https://pop2-apps.mycontactcenter.net/API/v3/dialer/entry/" +
-                encodeURIComponent(listCode) + "/" + encodeURIComponent(queueId) +
-                "?callback=handleResponse";
+            // Construct the URL for the proxy script
+        var proxyUrl = "https://stevemac78.github.io/ScheduledDialout1stKick/proxy.php";
 
-            // Create a script element to perform the JSONP request
-            var script = document.createElement('script');
-            script.src = url;
+        // Construct the full URL with query parameters
+        var url = proxyUrl + "?" + "listCode=" + encodeURIComponent(listCode) + "&queueId=" + encodeURIComponent(queueId);
 
-            // Define a global callback function to handle the JSONP response
-            window.handleResponse = function(response) {
-                console.log(response);
-                // You can process the response here as needed
-            };
+        // Create a script element to perform the JSONP request
+        var script = document.createElement('script');
+        script.src = url;
 
-            // Append the script element to the document to initiate the JSONP request
-            document.body.appendChild(script);
+        // Define a global callback function to handle the response from the proxy
+        window.handleResponse = function(response) {
+            console.log(response);
+            // You can process the response here as needed
+        };
+
+        // Append the script element to the document to initiate the JSONP request
+        document.body.appendChild(script);
         }
     </script>
 </head>
