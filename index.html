@@ -45,23 +45,20 @@
 				};
 				var url = "https://pop2-apps.mycontactcenter.net/API/v3/dialer/entry/" + listCode + "/" + queueId;
 				$.ajax({
-					type: "POST",
-					url: url,
-					headers: {
-						"Authorization": "Bearer " + token	
-					},
-					data: JSON.stringify([entry]),
-					contentType: "application/json",
-					mode: "cors",
-					success: function(response) {
-						console.log(response);
-						alert("Entry added successfully!");
-					},
-					error: function(xhr, status, error) {
-						console.log(xhr.responseText);
-						alert("Error adding entry: " + xhr.responseText);
-					}
-				});
+				    url: 'https://pop2-apps.mycontactcenter.net/API/v3/dialer/entry/...',
+				    type: 'POST',
+				    data: JSON.stringify(data),
+				    contentType: 'application/json',
+				    dataType: 'json',
+				    crossDomain: true,
+				    mode: 'cors', // Add this option
+				    success: function(response) {
+				        console.log(response);
+				    },
+				    error: function(xhr, status, error) {
+				        console.log(error);
+				    }
+});
 			});
 		});
 	</script>
