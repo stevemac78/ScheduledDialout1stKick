@@ -52,6 +52,7 @@
 					},
 					data: JSON.stringify([entry]),
 					contentType: "application/json",
+					crossDomain: true, // Add this option
 					success: function(response) {
 						console.log(response);
 						alert("Entry added successfully!");
