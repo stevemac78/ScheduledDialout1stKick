@@ -114,10 +114,7 @@
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'token': key,
-				'Access-Control-Allow-Origin': '*',
-      				'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-	      			'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+				"Authorization": "Bearer " + key,
 			},
 			body: JSON.stringify([data])
 		})
