@@ -49,11 +49,10 @@
 					url: url,
 					headers: {
 						"Authorization": "Bearer " + token
+						"cors"
 					},
 					data: JSON.stringify([entry]),
 					contentType: "application/json",
-					crossDomain: true,
-					cors: true,
 					success: function(response) {
 						console.log(response);
 						alert("Entry added successfully!");
