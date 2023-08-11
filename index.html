@@ -48,11 +48,11 @@
 					type: "POST",
 					url: url,
 					headers: {
-						"Authorization": "Bearer " + token
-						"cors"
+						"Authorization": "Bearer " + token	
 					},
 					data: JSON.stringify([entry]),
 					contentType: "application/json",
+					mode: "cors",
 					success: function(response) {
 						console.log(response);
 						alert("Entry added successfully!");
