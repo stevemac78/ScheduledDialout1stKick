@@ -42,20 +42,23 @@
                 "DefaultSubsubject": defaultSubsubject
             };
 
-            var url = "https://pop2-apps.mycontactcenter.net/API/v3/dialer/entry/" + encodeURIComponent(listCode) + "/" + encodeURIComponent(queueId);
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        console.log(xhr.responseText);
-                    } else {
-                        console.error("Error:", xhr.statusText);
-                    }
-                }
+            // Construct the JSONP URL
+            var url = "https://pop2-apps.mycontactcenter.net/API/v3/dialer/entry/" +
+                encodeURIComponent(listCode) + "/" + encodeURIComponent(queueId) +
+                "?callback=handleResponse";
+
+            // Create a script element to perform the JSONP request
+            var script = document.createElement('script');
+            script.src = url;
+
+            // Define a global callback function to handle the JSONP response
+            window.handleResponse = function(response) {
+                console.log(response);
+                // You can process the response here as needed
             };
-            xhr.send(JSON.stringify(entry));
+
+            // Append the script element to the document to initiate the JSONP request
+            document.body.appendChild(script);
         }
     </script>
 </head>
