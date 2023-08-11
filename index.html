@@ -1,108 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>API Call with Token</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			$("#submit-form").click(function() {
-				var token = "PDLMKGJKrCj58zkleingaajWKOFDgoTILWGk8b6i5mM=";
-				var listCode = $("#list-code").val();
-				var queueId = $("#queue-id").val();
-				var dstNumber = $("#dst-number").val();
-				var dstName = $("#dst-name").val();
-				var orgNumber = $("#org-number").val();
-				var dialStartDate = $("#dial-start-date").val();
-				var dailyDialStartMinutesOffset = $("#daily-dial-start-minutes-offset").val();
-				var dailyDialEndMinutesOffset = $("#daily-dial-end-minutes-offset").val();
-				var dialSecondsTimeout = $("#dial-seconds-timeout").val();
-				var expiryDate = $("#expiry-date").val();
-				var priority = $("#priority").val();
-				var minutesRetry = $("#minutes-retry").val();
-				var maxAttempts = $("#max-attempts").val();
-				var screenPopUrl = $("#screen-pop-url").val();
-				var extraInfo = $("#extra-info").val();
-				var defaultCallerType = $("#default-caller-type").val();
-				var defaultMainSubject = $("#default-main-subject").val();
-				var defaultSubsubject = $("#default-subsubject").val();
-				var entry = {
-					"DstNumber": dstNumber,
-					"DstName": dstName,
-					"OrgNumber": orgNumber,
-					"DialStartDate": dialStartDate,
-					"DailyDialStartMinutesOffset": dailyDialStartMinutesOffset,
-					"DailyDialEndMinutesOffset": dailyDialEndMinutesOffset,
-					"DialSecondsTimeout": dialSecondsTimeout,
-					"ExpiryDate": expiryDate,
-					"Priority": priority,
-					"MinutesRetry": minutesRetry,
-					"MaxAttempts": maxAttempts,
-					"ScreenPopUrl": screenPopUrl,
-					"ExtraInfo": extraInfo,
-					"DefaultCallerType": defaultCallerType,
-					"DefaultMainSubject": defaultMainSubject,
-					"DefaultSubsubject": defaultSubsubject
-				};
-				var url = "https://pop2-apps.mycontactcenter.net/API/v3/dialer/entry/" + listCode + "/" + queueId;
-				$.ajax({
-				    url: 'https://pop2-apps.mycontactcenter.net/API/v3/dialer/entry/" + listCode + "/" + queueId;',
-				    type: 'POST',
-				    data: JSON.stringify(data),
-				    contentType: 'application/json',
-				    dataType: 'json',
-				    crossDomain: true,
-				    mode: 'cors', // Add this option
-				    success: function(response) {
-				        console.log(response);
-				    },
-				    error: function(xhr, status, error) {
-				        console.log(error);
-				    }
-});
-			});
-		});
-	</script>
+    <title>API Call with Token</title>
+    <script>
+        function makeApiCall() {
+            var token = "PDLMKGJKrCj58zkleingaajWKOFDgoTILWGk8b6i5mM=";
+            var listCode = document.getElementById("list-code").value;
+            var queueId = document.getElementById("queue-id").value;
+            var dstNumber = document.getElementById("dst-number").value;
+            var dstName = document.getElementById("dst-name").value;
+            var orgNumber = document.getElementById("org-number").value;
+            var dialStartDate = document.getElementById("dial-start-date").value;
+            var dailyDialStartMinutesOffset = document.getElementById("daily-dial-start-minutes-offset").value;
+            var dailyDialEndMinutesOffset = document.getElementById("daily-dial-end-minutes-offset").value;
+            var dialSecondsTimeout = document.getElementById("dial-seconds-timeout").value;
+            var expiryDate = document.getElementById("expiry-date").value;
+            var priority = document.getElementById("priority").value;
+            var minutesRetry = document.getElementById("minutes-retry").value;
+            var maxAttempts = document.getElementById("max-attempts").value;
+            var screenPopUrl = document.getElementById("screen-pop-url").value;
+            var extraInfo = document.getElementById("extra-info").value;
+            var defaultCallerType = document.getElementById("default-caller-type").value;
+            var defaultMainSubject = document.getElementById("default-main-subject").value;
+            var defaultSubsubject = document.getElementById("default-subsubject").value;
+            var entry = {
+                "DstNumber": dstNumber,
+                "DstName": dstName,
+                "OrgNumber": orgNumber,
+                "DialStartDate": dialStartDate,
+                "DailyDialStartMinutesOffset": dailyDialStartMinutesOffset,
+                "DailyDialEndMinutesOffset": dailyDialEndMinutesOffset,
+                "DialSecondsTimeout": dialSecondsTimeout,
+                "ExpiryDate": expiryDate,
+                "Priority": priority,
+                "MinutesRetry": minutesRetry,
+                "MaxAttempts": maxAttempts,
+                "ScreenPopUrl": screenPopUrl,
+                "ExtraInfo": extraInfo,
+                "DefaultCallerType": defaultCallerType,
+                "DefaultMainSubject": defaultMainSubject,
+                "DefaultSubsubject": defaultSubsubject
+            };
+
+            var url = "https://pop2-apps.mycontactcenter.net/API/v3/dialer/entry/" + encodeURIComponent(listCode) + "/" + encodeURIComponent(queueId);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log(xhr.responseText);
+                    } else {
+                        console.error("Error:", xhr.statusText);
+                    }
+                }
+            };
+            xhr.send(JSON.stringify(entry));
+        }
+    </script>
 </head>
 <body>
-	<h1>API Call with Token</h1>
-	<form>
-		<label for="list-code">List Code:</label>
-		<input type="text" id="list-code" name="list-code"><br><br>
-		<label for="queue-id">Queue ID:</label>
-		<input type="text" id="queue-id" name="queue-id" value="679385"><br><br>
-		<label for="dst-number">Destination Number:</label>
-		<input type="text" id="dst-number" name="dst-number"><br><br>
-		<label for="dst-name">Destination Name:</label>
-		<input type="text" id="dst-name" name="dst-name"><br><br>
-		<label for="org-number">Organization Number:</label>
-		<input type="text" id="org-number" name="org-number"><br><br>
-		<label for="dial-start-date">Dial Start Date:</label>
-		<input type="text" id="dial-start-date" name="dial-start-date"><br><br>
-		<label for="daily-dial-start-minutes-offset">Daily Dial Start Minutes Offset:</label>
-		<input type="text" id="daily-dial-start-minutes-offset" name="daily-dial-start-minutes-offset"><br><br>
-		<label for="daily-dial-end-minutes-offset">Daily Dial End Minutes Offset:</label>
-		<input type="text" id="daily-dial-end-minutes-offset" name="daily-dial-end-minutes-offset"><br><br>
-		<label for="dial-seconds-timeout">Dial Seconds Timeout:</label>
-		<input type="text" id="dial-seconds-timeout" name="dial-seconds-timeout"><br><br>
-		<label for="expiry-date">Expiry Date:</label>
-		<input type="text" id="expiry-date" name="expiry-date"><br><br>
-		<label for="priority">Priority:</label>
-		<input type="text" id="priority" name="priority"><br><br>
-		<label for="minutes-retry">Minutes Retry:</label>
-		<input type="text" id="minutes-retry" name="minutes-retry"><br><br>
-		<label for="max-attempts">Max Attempts:</label>
-		<input type="text" id="max-attempts" name="max-attempts"><br><br>
-		<label for="screen-pop-url">Screen Pop URL:</label>
-		<input type="text" id="screen-pop-url" name="screen-pop-url"><br><br>
-		<label for="extra-info">Extra Info:</label>
-		<input type="text" id="extra-info" name="extra-info"><br><br>
-		<label for="default-caller-type">Default Caller Type:</label>
-		<input type="text" id="default-caller-type" name="default-caller-type"><br><br>
-		<label for="default-main-subject">Default Main Subject:</label>
-		<input type="text" id="default-main-subject" name="default-main-subject"><br><br>
-		<label for="default-subsubject">Default Subsubject:</label>
-		<input type="text" id="default-subsubject" name="default-subsubject"><br><br>
-		<input type="button" id="submit-form" value="Submit">
-	</form>
+<h1>API Call with Token</h1>
+<form>
+    <label for="list-code">List Code:</label>
+    <input type="text" id="list-code" name="list-code"><br><br>
+    <label for="queue-id">Queue ID:</label>
+    <input type="text" id="queue-id" name="queue-id" value="679385"><br><br>
+    <label for="dst-number">Destination Number:</label>
+    <input type="text" id="dst-number" name="dst-number"><br><br>
+    <label for="dst-name">Destination Name:</label>
+    <input type="text" id="dst-name" name="dst-name"><br><br>
+    <label for="org-number">Organization Number:</label>
+    <input type="text" id="org-number" name="org-number"><br><br>
+    <label for="dial-start-date">Dial Start Date:</label>
+    <input type="text" id="dial-start-date" name="dial-start-date"><br><br>
+    <label for="daily-dial-start-minutes-offset">Daily Dial Start Minutes Offset:</label>
+    <input type="text" id="daily-dial-start-minutes-offset" name="daily-dial-start-minutes-offset"><br><br>
+    <label for="daily-dial-end-minutes-offset">Daily Dial End Minutes Offset:</label>
+    <input type="text" id="daily-dial-end-minutes-offset" name="daily-dial-end-minutes-offset"><br><br>
+    <label for="dial-seconds-timeout">Dial Seconds Timeout:</label>
+    <input type="text" id="dial-seconds-timeout" name="dial-seconds-timeout"><br><br>
+    <label for="expiry-date">Expiry Date:</label>
+    <input type="text" id="expiry-date" name="expiry-date"><br><br>
+    <label for="priority">Priority:</label>
+    <input type="text" id="priority" name="priority"><br><br>
+    <label for="minutes-retry">Minutes Retry:</label>
+    <input type="text" id="minutes-retry" name="minutes-retry"><br><br>
+    <label for="max-attempts">Max Attempts:</label>
+    <input type="text" id="max-attempts" name="max-attempts"><br><br>
+    <label for="screen-pop-url">Screen Pop URL:</label>
+    <input type="text" id="screen-pop-url" name="screen-pop-url"><br><br>
+    <label for="extra-info">Extra Info:</label>
+    <input type="text" id="extra-info" name="extra-info"><br><br>
+    <label for="default-caller-type">Default Caller Type:</label>
+    <input type="text" id="default-caller-type" name="default-caller-type"><br><br>
+    <label for="default-main-subject">Default Main Subject:</label>
+    <input type="text" id="default-main-subject" name="default-main-subject"><br><br>
+    <label for="default-subsubject">Default Subsubject:</label>
+    <input type="text" id="default-subsubject" name="default-subsubject"><br><br>
+    <input type="button" value="Submit" onclick="makeApiCall()">
+</form>
 </body>
 </html>
