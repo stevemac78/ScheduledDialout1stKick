@@ -113,6 +113,7 @@
 		fetch(`https://pop2-apps.mycontactcenter.net/API/v3/dialer/entry/${listCode}/${queueId}`, {
 			method: 'POST',
 			headers: {
+				'Access-Control-Allow-Origin': '*',
 				'Content-Type': 'application/json',
 				'token': key
 			},
