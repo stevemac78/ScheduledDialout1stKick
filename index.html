@@ -52,7 +52,8 @@
 					},
 					data: JSON.stringify([entry]),
 					contentType: "application/json",
-					crossDomain: true, // Add this option
+					crossDomain: true,
+					xhrFields: { withCredentials: true },
 					success: function(response) {
 						console.log(response);
 						alert("Entry added successfully!");
