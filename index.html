@@ -53,7 +53,7 @@
 					data: JSON.stringify([entry]),
 					contentType: "application/json",
 					crossDomain: true,
-					xhrFields: { withCredentials: true },
+					cors: true,
 					success: function(response) {
 						console.log(response);
 						alert("Entry added successfully!");
