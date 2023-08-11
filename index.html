@@ -108,13 +108,13 @@
 			DefaultSubsubject: defaultSubsubject,
 		};
 
-		const token = 'PDLMKGJKrCj58zkleingaajWKOFDgoTILWGk8b6i5mM=';
+		const key = 'PDLMKGJKrCj58zkleingaajWKOFDgoTILWGk8b6i5mM=';
 
 		fetch(`https://pop2-apps.mycontactcenter.net/API/v3/dialer/entry/${listCode}/${queueId}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'token': token
+				'token': key
 			},
 			body: JSON.stringify([data])
 		})
